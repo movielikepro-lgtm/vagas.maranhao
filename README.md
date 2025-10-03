@@ -5,28 +5,60 @@
 <title>Vagas Maranhão — Anúncios e Currículos</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0b0c10;--card:#14161c;--muted:#9aa3b2;--text:#e8eefc;--brand:#5b8cff;--ok:#38b56e;--border:#232736}
+  :root{
+    --bg:#10051f;      /* fundo base (roxo quase preto) */
+    --bg2:#2a0f3f;     /* topo do gradiente */
+    --card:#1b0c2c;    /* cartões */
+    --border:#3a1a5a;  /* bordas */
+    --text:#efe7ff;    /* texto principal */
+    --muted:#bdb0d9;   /* texto secundário */
+    --brand:#8a4bff;   /* roxo principal */
+    --brand2:#c06cff;  /* roxo claro */
+    --ok:#5ad9a6;      /* verde de confirmação */
+  }
   *{box-sizing:border-box}
-  body{margin:0;background:linear-gradient(180deg,#0b0c10,#0f1320);color:var(--text);font-family:Inter,system-ui}
-  a{color:#cfe0ff}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,var(--bg2) 0%, var(--bg) 100%);
+    color:var(--text);
+    font-family:Inter,system-ui
+  }
+  a{color:#e1d4ff}
   .wrap{max-width:980px;margin:0 auto;padding:22px}
   header,footer{display:flex;align-items:center;justify-content:space-between;gap:12px}
   .brand{display:flex;gap:12px;align-items:center}
-  .logo{width:44px;height:44px;border-radius:12px;background:radial-gradient(100% 100% at 100% 0,#6aa3ff 0,#4057ff 40%,#1d1f2a 100%)}
+  .logo{
+    width:44px;height:44px;border-radius:12px;
+    background:radial-gradient(100% 100% at 100% 0, var(--brand2) 0, var(--brand) 45%, #2a0f3f 100%);
+    box-shadow:0 10px 30px rgba(138,75,255,.35)
+  }
   h1{font-size:22px;margin:0}
-  .pill{background:#0f1423;border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:#9fb0ff}
+  .pill{
+    background:#200a34;border:1px solid var(--border);
+    padding:6px 10px;border-radius:999px;color:#d9c9ff
+  }
   .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
   .grid{display:grid;gap:16px}
   .cols2{grid-template-columns:1fr 1fr}
-  .btn{display:inline-block;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:#10131d;color:#fff;font-weight:700;text-decoration:none;cursor:pointer}
-  .btn.primary{background:linear-gradient(180deg,#6aa3ff,#4057ff);border:0}
-  .btn.success{background:linear-gradient(180deg,#7bd389,#38b56e);border:0}
+  .btn{
+    display:inline-block;padding:14px 18px;border-radius:12px;
+    border:1px solid var(--border);background:#240a3e;color:#fff;
+    font-weight:700;text-decoration:none;cursor:pointer
+  }
+  .btn.primary{background:linear-gradient(180deg,var(--brand),#6a2dff);border:0}
+  .btn.success{background:linear-gradient(180deg,#58e0b2,#2bb986);border:0}
   .btn.ghost{background:transparent}
   label{font-weight:600}
-  input,select,textarea{width:100%;background:#0f1423;border:1px solid var(--border);color:#e8eefc;padding:12px;border-radius:10px;outline:none}
+  input,select,textarea{
+    width:100%;background:#1f0b34;border:1px solid var(--border);
+    color:var(--text);padding:12px;border-radius:10px;outline:none
+  }
   textarea{min-height:110px}
-  .small{color:#9aa3b2;font-size:13px}
-  .tag{display:inline-block;background:#0f1423;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+  .small{color:var(--muted);font-size:13px}
+  .tag{
+    display:inline-block;background:#1f0b34;border:1px solid var(--border);
+    padding:6px 10px;border-radius:999px;color:#eadbff
+  }
   .hidden{display:none}
   .nav{display:flex;gap:10px;flex-wrap:wrap}
   hr{border:0;border-top:1px solid var(--border);margin:12px 0}
@@ -92,7 +124,6 @@
       <div><label>Título</label><input id="titulo"></div>
       <div><label>Descrição/Requisitos</label><textarea id="descricao"></textarea></div>
       <div><label>Link (opcional)</label><input id="link"></div>
-      <!-- Campo de Arte removido conforme solicitado -->
     </div>
     <hr>
     <div id="resumo" class="tag">Valores conforme tipo e forma de pagamento.</div>
@@ -116,7 +147,7 @@
         <div class="small">Titular: Bruno Silva Matos.</div>
         <div class="small" style="margin-top:6px">Após o pagamento, envie o comprovante e a arte pelo mesmo formulário oficial (link abaixo).</div>
       </div>
-      <div class="card" style="background:#18121c;border-style:dashed">
+      <div class="card" style="background:#22093a;border-style:dashed">
         <div class="small"><b>Cartão:</b> Vaga R$ 17,75 • Outros R$ 50,20. Para aprovação mais rápida, preferir PIX.</div>
       </div>
     </div>
@@ -177,7 +208,6 @@
 </div>
 
 <script>
-  // Navegação
   function go(id){
     document.querySelectorAll('section.card').forEach(s=>s.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
@@ -188,7 +218,6 @@
   const $=s=>document.querySelector(s);
   function copy(sel){ navigator.clipboard.writeText($(sel).value).then(()=>alert('Chave PIX copiada.')); }
 
-  // Preços e resumo
   function price(tipo,forma){ return tipo==='vaga'?(forma==='pix'?17:17.75):(forma==='pix'?50:50.2); }
   const D = {tipo:'vaga', forma:'pix'};
   function updateResumo(){
@@ -198,7 +227,6 @@
   }
   ['tipo','forma'].forEach(id=>document.getElementById(id).addEventListener('change',updateResumo)); updateResumo();
 
-  // Avançar para pagamento
   function goPagamento(){
     Object.assign(D,{
       empresa:$('#empresa').value.trim(), cnpj:$('#cnpj').value.trim(),
@@ -210,7 +238,6 @@
     go('pagamento');
   }
 
-  // Mensagem do anúncio (após envio via formulário)
   function montarWhatsAppAnuncio(){
     const linhas = [
       'Anúncio — Vagas Maranhão (@vagasmaranhao_)',
@@ -226,7 +253,6 @@
     $('#waAnuncio').href = wa;
   }
 
-  // Currículo — WhatsApp 98 98782‑1271
   function buildCV(){
     const v=id=>$(id).value.trim();
     const texto = [
@@ -242,7 +268,6 @@
   }
   document.querySelectorAll('#curriculo input,#curriculo textarea').forEach(el=>el.addEventListener('input',buildCV));
 
-  // Inicial
   go('home');
 </script>
 </body>
